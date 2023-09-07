@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  background: var(--blue);
+  background: ${(props) => props.theme["gray-900"]};
 `;
 
 export const Content = styled.div`
@@ -14,9 +14,9 @@ export const Content = styled.div`
   justify-content: space-between;
 
   button {
-    font-size: 1rem;
+    font-weight: bold;
     color: #fff;
-    background: var(--blue-light);
+    background: ${(props) => props.theme["green-500"]};
     border: 0;
     padding: 0 2rem;
     border-radius: 0.25rem;
@@ -25,7 +25,7 @@ export const Content = styled.div`
     transition: filter 0.2s;
 
     :hover {
-      filter: brightness(0.9);
+      filter: brightness(0.7);
     }
   }
 `;

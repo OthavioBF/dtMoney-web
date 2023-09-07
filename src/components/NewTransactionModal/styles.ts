@@ -3,7 +3,7 @@ import { darken, transparentize } from "polished";
 
 export const Container = styled.form`
   h2 {
-    color: var(--text-title);
+    color: ${(props) => props.theme["gray-100"]};
     font-size: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -13,14 +13,15 @@ export const Container = styled.form`
     padding: 0 1.5rem;
     height: 4rem;
     border-radius: 0.25rem;
+    border: 0;
+    background: ${(props) => props.theme["gray-900"]};
+    color: ${(props) => props.theme["gray-300"]};
 
-    border: 1px solid #d7d7d7;
-    background: #e7e9ee;
     font-weight: 400;
     font-size: 1rem;
 
     &::placeholder {
-      color: var(--text-body);
+      color: ${(props) => props.theme["gray-500"]};
     }
 
     & + input {
@@ -32,7 +33,7 @@ export const Container = styled.form`
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
-    background: var(--green);
+    background: ${(props) => props.theme["green-500"]};
     color: #ffffff;
     border-radius: 0.25rem;
     border: 0;
@@ -60,20 +61,24 @@ interface RadioBoxProps {
   activeColor: "green" | "red";
 }
 
-const color = {
-  green: "#33CC95",
-  red: "#E52E4D",
+const backgroundColor = {
+  green: "#00875F",
+  red: "#AB222E",
 };
 
+const color = {
+  green: "#00B37E",
+  red: "#F75A68",
+};
 export const RadioBox = styled.button<RadioBoxProps>`
   height: 4rem;
-  border: 1px solid #d7d7d7;
   border-radius: 0.25rem;
+  border: 0;
 
   background: ${(props) =>
     props.isActive
-      ? transparentize(0.9, color[props.activeColor])
-      : "transparent"};
+      ? backgroundColor[props.activeColor]
+      : props.theme["gray-700"]};
 
   display: flex;
   align-items: center;
@@ -85,6 +90,11 @@ export const RadioBox = styled.button<RadioBoxProps>`
     border-color: ${darken(0.1, "#d7d7d7")};
   }
 
+  svg {
+    color: ${(props) =>
+      props.isActive ? props.theme.white : color[props.activeColor]};
+  }
+
   img {
     width: 20px;
     height: 20px;
@@ -94,6 +104,6 @@ export const RadioBox = styled.button<RadioBoxProps>`
     display: inline-block;
     margin-left: 1rem;
     font-size: 1rem;
-    color: var(--text-title);
+    color: ${(props) => props.theme["gray-300"]};
   }
 `;

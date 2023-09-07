@@ -1,0 +1,76 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "description": "Desenvolvimento de site",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2022-07-29T19:36:44.505Z"
+    },
+    {
+      "id": 2,
+      "description": "Hambúrguer",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 50,
+      "createdAt": "2022-07-29T19:30:44.505Z"
+    },
+    {
+      "description": "alguma coisa",
+      "price": 11111,
+      "category": "dev",
+      "type": "outcome",
+      "createdAt": "2023-09-07T20:38:39.738Z",
+      "id": 3
+    },
+    {
+      "description": "outra coisa",
+      "price": 2000,
+      "category": "saida",
+      "type": "outcome",
+      "createdAt": "2023-09-07T20:57:59.984Z",
+      "id": 4
+    },
+    {
+      "description": "Desenvolvimento mobile",
+      "price": 11111,
+      "category": "Freelance",
+      "type": "income",
+      "createdAt": "2023-09-07T21:07:23.029Z",
+      "id": 5
+    },
+    {
+      "description": "maosdam",
+      "price": 222,
+      "category": "balbal",
+      "type": "income",
+      "createdAt": "2023-09-07T21:09:01.719Z",
+      "id": 6
+    },
+    {
+      "description": "saidda",
+      "price": 222222,
+      "category": "saida",
+      "type": "outcome",
+      "createdAt": "2023-09-07T21:10:24.199Z",
+      "id": 7
+    },
+    {
+      "description": "dasdas",
+      "price": 213231,
+      "category": "dawdw",
+      "type": "income",
+      "createdAt": "2023-09-07T21:18:34.758Z",
+      "id": 8
+    },
+    {
+      "description": "wadwdaw",
+      "price": 2113123,
+      "category": "wdawdawd",
+      "type": "income",
+      "createdAt": "2023-09-07T21:19:42.142Z",
+      "id": 9
+    }
+  ]
+}

@@ -22,6 +22,11 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :focus {
+    box-shadow: 0 0 0 2px ${(props) => props.theme["green-500"]}
+    outline: 0;
+  }
+
   html { 
     @media (max-width: 1080px) {
       font-size: 93.75%;
@@ -33,13 +38,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body { 
-    background: var(--background);
+    background: ${(props) => props.theme["gray-800"]};
+    color: ${(props) => props.theme["gray-100"]};
     -webkit-font-smoothing: antialiazed;
   }
 
   body, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
+    font: 400 1rem Roboto, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
@@ -72,7 +77,7 @@ export const GlobalStyle = createGlobalStyle`
   .react-modal-content {
     width: 100%;
     max-width: 576px;
-    background: var(--background);
+    background: ${(props) => props.theme["gray-800"]};
     padding: 3rem;
     position: relative;
     border-radius: 0.25rem;

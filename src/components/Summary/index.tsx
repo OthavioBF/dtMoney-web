@@ -1,22 +1,20 @@
-import { useContext } from "react";
-import Income from "../../assets/income.svg";
-import Outcome from "../../assets/outcome.svg";
-import Total from "../../assets/total.svg";
 import { useTransactions } from "../../hooks/useTransactions";
 
-import { Container } from "./styles";
+import { Container, SummaryCard } from "./styles";
+import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from "phosphor-react";
+import { formatPrice } from "../../utils/formatPrice";
 
 export function Summary() {
   const { transactions } = useTransactions();
 
-  const summary = transactions.reduce(
+  const { income, outcome, total } = transactions.reduce(
     (accumulator, transaction) => {
-      if (transaction.type === "income") {
-        accumulator.income += transaction.amount;
-        accumulator.total += transaction.amount;
+      if (transaction?.type === "income") {
+        accumulator.income += transaction?.price;
+        accumulator.total += transaction?.price;
       } else {
-        accumulator.outcome += transaction.amount;
-        accumulator.total -= transaction.amount;
+        accumulator.outcome += transaction?.price;
+        accumulator.total -= transaction?.price;
       }
 
       return accumulator;
@@ -30,27 +28,27 @@ export function Summary() {
 
   return (
     <Container>
-      <div>
+      <SummaryCard>
         <header>
           <p>Entradas</p>
-          <img src={Income} alt="Entradas" />
+          <ArrowCircleUp size={32} color="#00b37e" />
         </header>
-        <strong>{summary.income}</strong>
-      </div>
-      <div>
+        <strong>{formatPrice(income)}</strong>
+      </SummaryCard>
+      <SummaryCard>
         <header>
           <p>Saídas</p>
-          <img src={Outcome} alt="Saídas" />
+          <ArrowCircleDown size={32} color="#f75a68" />
         </header>
-        <strong>{summary.outcome}</strong>
-      </div>
-      <div>
+        <strong>{formatPrice(outcome)}</strong>
+      </SummaryCard>
+      <SummaryCard variant="green">
         <header>
           <p>Total</p>
-          <img src={Total} alt="Total" />
+          <CurrencyDollar size={32} color="#FFF" />
         </header>
-        <strong>{summary.total}</strong>
-      </div>
+        <strong>{formatPrice(total)}</strong>
+      </SummaryCard>
     </Container>
   );
 }

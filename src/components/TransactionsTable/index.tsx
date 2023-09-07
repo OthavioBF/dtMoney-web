@@ -1,48 +1,52 @@
-import { useEffect, useState, useContext } from "react";
-import { api } from "../../services/api";
 import { useTransactions } from "../../hooks/useTransactions";
-import { Container } from "./styles";
+import { Container, PriceHighLight, Form, Table } from "./styles";
+import { MagnifyingGlass } from "phosphor-react";
+import { formatPrice } from "../../utils/formatPrice";
 
 export function TransactionsTable() {
-  const { transactions } = useTransactions();
+  const { transactions, loadTransactions } = useTransactions();
+
+  function handleSearchTransactions(value: string) {
+    loadTransactions(value);
+  }
 
   return (
     <Container>
-      <table>
-        <thead>
-          <tr>
-            <th>Título</th>
-            <th>Valor</th>
-            <th>Categoria</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-
+      <Form>
+        <input
+          type="text"
+          placeholder="Busque uma transação"
+          onChange={(e) => handleSearchTransactions(e.target.value)}
+        />
+        <button>
+          <MagnifyingGlass size={16} color="#00B37E" />
+          Buscar
+        </button>
+      </Form>
+      <Table>
         <tbody>
           {transactions.map((transaction) => {
             return (
               <tr key={transaction.id}>
-                <td>{transaction.title}</td>
-                <td className={transaction.type}>
-                  {new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(transaction.amount)}
+                <td>{transaction?.description}</td>
+                <td className={transaction?.type}>
+                  <PriceHighLight variant={transaction?.type}>
+                    {transaction?.type === "income"
+                      ? formatPrice(transaction?.price)
+                      : `- ${formatPrice(transaction?.price)}`}
+                  </PriceHighLight>
                 </td>
-                <td>{transaction.category}</td>
+                <td>{transaction?.category}</td>
                 <td>
                   {new Intl.DateTimeFormat("pt-BR").format(
-                    new Date(transaction.amount)
+                    new Date(transaction?.createdAt)
                   )}
                 </td>
               </tr>
             );
           })}
         </tbody>
-      </table>
+      </Table>
     </Container>
   );
-}
-function TransactionContext(TransactionContext: any) {
-  throw new Error("Function not implemented.");
 }
